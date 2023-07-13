@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myshop.dao.ShopInformDao">
+    <select id="findAll" resultType="com.myshop.bean.ShopInform">
+        select * from shopinform
+    </select>
+    <select id="findByWid" resultType="com.myshop.bean.ShopInform">
+        select * from shopinform where wid=#{wid}
+    </select>
+    <select id="findById" resultType="com.myshop.bean.ShopInform">
+      select * from shopinform where id=#{id}
+    </select>
+</mapper>

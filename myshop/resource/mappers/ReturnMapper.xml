@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myshop.dao.ReturnDao">
+    <!--查询所有订单信息-->
+    <select id="findAll" resultType="com.myshop.bean.Return">
+        SELECT * FROM `return`
+    </select>
+    <!--根据订单编号查询订单-->
+    <select id="findByOid" resultType="com.myshop.bean.Return">
+        SELECT * FROM `return` WHERE oid=#{oId}
+    </select>
+
+    <!--根据订单状态，查询到订单集合-->
+    <select id="findOrders" resultType="com.myshop.bean.Return">
+        SELECT * FROM `return` WHERE orders=#{orders}
+    </select>
+
+    <!--根据门店编号查询详细一个门店的订单集合-->
+    <select id="findBySid" resultType="com.myshop.bean.Return">
+        SELECT * FROM `return` WHERE sid=#{sId}
+    </select>
+
+    <!--根据订单状态，查询订单集合-->
+    <select id="findByState" resultType="com.myshop.bean.Return">
+       SELECT * FROM `return` WHERE state=#{state}
+    </select>
+
+    <!--根据退换货状态，查询订单集合-->
+    <select id="findByDeliver" resultType="com.myshop.bean.Return">
+       SELECT * FROM `return` WHERE deliver=#{deliver}
+    </select>
+
+    <!--增加一条订单-->
+    <insert id="save">
+        INSERT INTO `return`(sid,otime,cid,tid,`name`,price,onumber,orders,reason,wid) VALUE (#{sId},#{oTime},#{cId},#{tId},#{name},#{price},#{oNumber},#{orders},#{reason},#{wId})
+    </insert>
+
+    <!--根据订单编号更新订单信息,更新订单状态-->
+    <update id="update">
+        UPDATE `return`
+        <set>
+            <if test="state!=null">state=#{state},</if>
+            <if test="deliver!=null">deliver=#{deliver}</if>
+        </set>
+         WHERE oid=#{oId}
+    </update>
+
+    <!--根据订单编号删除订单-->
+    <delete id="deleteById">
+        DELETE FROM `return` WHERE oid=#{oId}
+    </delete>
+
+
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myshop.dao.WareHousePerpDao">
+    <!--查询-->
+    <select id="findAll" resultType="com.myshop.bean.WareHousePerp">
+        select *from WareHousePerp
+    </select>
+    <!--通过id查询-->
+    <select id="findById" resultType="com.myshop.bean.WareHousePerp">
+        select *from WareHousePerp where wId= #{wId}
+    </select>
+    <!--新增-->
+    <insert id="addEmp" >
+        insert into WareHousePerp(wId,userName,sex,`position`)values(#{wId},#{userName},#{sex},#{position})
+    </insert>
+    <!--删除-->
+    <delete id="deleteEmp" >
+        delete  from WareHousePerp where wId=#{wId}
+    </delete>
+    <!--更新-->
+    <update id="updateEmp" >
+        update WareHousePerp set  userName=#{userName} where wId=#{wId}
+    </update>
+</mapper>
+
+
+
+
+
+
+

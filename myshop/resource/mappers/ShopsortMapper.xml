@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myshop.dao.ShopSortDao">
+    <select id="findAll" resultType="com.myshop.bean.ShopSort">
+       select * from shopsort
+   </select>
+    <insert id="saveInfo">
+        insert into shopsort (sortid,sname,sortnum) values (#{sortId},#{sName},#{sortNum})
+    </insert>
+</mapper>

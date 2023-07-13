@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myshop.dao.GoodsDao">
+   <!--查询-->
+    <select id="findAll" resultType="com.myshop.bean.Goods">
+        select *from GOODS
+    </select>
+    <!--查询出所有的商品编号集合-->
+    <select id="findAllcId" resultType="com.myshop.bean.Goods">
+        SELECT cid FROM goods
+    </select>
+    <!--通过id查询-->
+    <select id="findById" resultType="com.myshop.bean.Goods">
+        select *from GOODS where cId= #{cId}
+    </select>
+    <!--根据商品名称，查询商品对象-->
+    <select id="findByName" resultType="com.myshop.bean.Goods">
+        SELECT cid,`name`,tid,price FROM goods WHERE `name`=#{name}
+    </select>
+    <!--新增-->
+    <insert id="addEmp" >
+        insert into GOODS(cId,`name`,tId,place,supplie,prodate,expdate,storage,price,`number`)values(#{cId},#{name},#{tId},#{place},#{supplie},#{prodate},#{expdate},#{storage},#{price},#{number})
+    </insert>
+    <!--删除-->
+    <delete id="deleteEmp" >
+        delete  from goods where cId=#{cId}
+    </delete>
+    <!--更新-->
+    <update id="updateEmp" >
+        update goods
+        <set>
+            <if test="name!=null">`name`=#{name},</if>
+            <if test="tId!=null">tId=#{tId},</if>
+            <if test="place!=null">place=#{place},</if>
+            <if test="supplie!=null">supplie=#{supplie},</if>
+            <if test="prodate!=null">prodate=#{prodate},</if>
+            <if test="expdate!=null">expdate=#{expdate},</if>
+            <if test="storage!=null">storage=#{storage},</if>
+            <if test="price!=null">price=#{price},</if>
+            <if test="number!=null">`number`=#{number}</if>
+        </set>
+        where cId=#{cId}
+    </update>
+</mapper>
+
+
+
+
+
+
+

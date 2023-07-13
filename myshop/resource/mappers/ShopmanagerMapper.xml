@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myshop.dao.ShopManagerDao">
+    <select id="findAll" resultType="com.myshop.bean.ShopManager">
+        select * from shopmanager
+    </select>
+    <select id="findByUserName" resultType="com.myshop.bean.ShopManager">
+        select * from shopmanager where username=#{userName}
+    </select>
+</mapper>

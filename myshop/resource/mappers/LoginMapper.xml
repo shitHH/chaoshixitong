@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myshop.dao.LoginDao">
+    <!--通过账号密码查询-->
+    <resultMap id="resultMap1" type="com.myshop.bean.Login">
+        <result column="username" property="userName"/>
+        <result column="`password`" property="passWord"/>
+    </resultMap>
+    <!--<select id="find" resultMap="resultMap1">
+        SELECT wId username `password` FROM login WHERE username=#{userName} AND `password`=#{passWord}
+    </select>-->
+    <select id="find" resultType="com.myshop.bean.Login">
+        SELECT wId ,username, `password` FROM login WHERE username=#{userName} AND `password`=#{passWord}
+    </select>
+    <!--查询-->
+    <select id="findAll" resultType="com.myshop.bean.Login">
+        select wId,userName,sex,`position` from login
+    </select>
+    <!--通过id查询-->
+    <select id="findById" resultType="com.myshop.bean.Login">
+        select wId,userName,sex,`position`from login where wId= #{wId}
+    </select>
+    <!-- 新增-->
+    <insert id="addEmp">
+        insert into login(wId,userName,sex,`position`)values(#{wId},#{userName},#{sex},#{position})
+    </insert>
+    <!--删除-->
+    <delete id="deleteEmp">
+        delete  from login where wId=#{wId}
+    </delete>
+    <!--更新-->
+    <update id="updateEmp">
+        update login set  userName=#{userName} where wId=#{wId}
+    </update>
+    <update id="updatemima">
+
+      update login set  password=#{passWord} where wId=#{wId}
+    </update>
+    <select id="findByName" resultType="com.myshop.bean.Login">
+        select userName from login where userName=#{userName}
+    </select>
+</mapper>
+
+
+
+
+
+
+

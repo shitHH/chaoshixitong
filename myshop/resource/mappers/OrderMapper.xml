@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myshop.dao.OrderDao">
+    <!--    通过id查询出仓库该商品信息及库存-->
+    <select id="findById3" resultType="com.myshop.bean.Goods">
+    SELECT * FROM goods WHERE cid = #{cId}
+    </select>
+    <!--    通过订单id查询所有的订单货物信息-->
+    <select id="findById1" resultType="com.myshop.bean.Order">
+        SELECT * FROM `ORDER` WHERE oid = #{oId}
+    </select>
+    <!--    查询所有订单信息-->
+    <select id="findAll" resultType="com.myshop.bean.Order">
+        SELECT * FROM `order`
+    </select>
+    <!--    通过店面sid查询该店的订单-->
+    <select id="findById2" resultType="com.myshop.bean.Order">
+        SELECT * FROM `order` WHERE sid = #{sId}
+     </select>
+    <!--根据订单状态，查询订单集合-->
+    <select id="findByState" resultType="com.myshop.bean.Order">
+        SELECT * FROM `order` WHERE state=#{state}
+    </select>
+    <!--    增加订单信息-->
+    <insert id="addOrder">
+        INSERT INTO `ORDER`(sid,otime,cid,tid,cname,cprice,cNum,wid) VALUES (#{sId},#{oTime},#{cid},#{tId},#{cName},#{cPrice},#{cNum},#{wId})
+    </insert>
+    <!--    删除订单-->
+    <delete id="deleteOrder2">
+        DELETE FROM `order` WHERE oid = #{oId}
+    </delete>
+    <!--    根据订单oid更新订单信息-->
+    <update id="updateOrder">
+           UPDATE `order`
+           <set>
+               <if test="state!=null">state=#{state},</if>
+               <if test="deliver!=null">deliver=#{deliver}</if>
+           </set>
+           WHERE oid =#{oId}
+    </update>
+</mapper>
